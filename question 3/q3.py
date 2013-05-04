@@ -6,7 +6,8 @@
 from scapy.all import *
 import re
 
-#Function has bugs. This function should be used. For now, a brute force approach is used below.
+#@TODO
+#Function has bugs no not in use. This function should be used. For now, a brute force approach is used below. Probably yacc parser can be used
 def check_header(s):
 	ip = "(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])" #IP addresses
 	host = "(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])" #hostnames
@@ -34,6 +35,32 @@ def check_header(s):
 	else:
 		return False
 
+#@TODO
+# def check_header_yacc(s):
+# 	tokens = (
+# 				message,prefix,command,SPACE,
+# 				params,
+# 				target,to,channel,servername,
+# 				host,nick,mask,user,
+
+# 		)
+# 	t_space = r' '
+# 	t_middle = r'[\S]+'
+# 	t_trailing = r'[\S]*'
+# 	t_crlf = r'[\r\n]'
+# 	t_comma = r'\,'
+# 	t_colon = r'\:'
+# 	t_ex = r'\!'
+# 	t_at = r'\@'
+# 	t_hash = r'\#'
+# 	t_nonwhite = r'\S'
+# 	t_letter = r'[a-zA-Z_]'
+# 	t_number = r'[0-9_]'
+# 	t_symbol = r'\-\[\]\{\}\`\^'
+	
+
+
+
 
 
 class IRC(Packet):
@@ -51,7 +78,7 @@ class IRC(Packet):
 		crlf = str(cr+lf)   				#"carriage return" "linefeed"
 		SPACE = chr(0x20)
 		data = s.split(crlf)[0]
-		#if check_header(i2m(s)) == False : continue
+		#if check_header(i2m(s)) == False : return
 		if data:
 			p1 = 1
 			if data[0] == ':':
@@ -67,3 +94,8 @@ class IRC(Packet):
 			
 
 bind_layers(TCP,IRC)
+
+
+
+
+
