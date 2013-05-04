@@ -1,0 +1,4 @@
+
+target script: q32.py
+target pcap: SkypeIRC.cap
+target out-file = ircpackets.cap

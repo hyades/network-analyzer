@@ -1,0 +1,5 @@
+target script : q4.py
+target input : dns-remoteshell.pcap
+target output:
+				dnspackets.pcap
+				dnsanomaly.pcap

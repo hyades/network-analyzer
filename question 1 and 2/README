@@ -1,0 +1,3 @@
+target csv = out.csv
+target html = d3.html (has link to out.csv) // have to be served
+target script: q1.py
